@@ -53,45 +53,33 @@
               </div>
             {% endif %}
 
-            <br>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Id</th>
-                  <th>E-mail</th>
-                  <th>Magic link</th>
-                  <th>Route</th>
-                  <th>Counter</th>
-                  <th>Revoked</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th>1</th>
-                  <td>example@email.com</td>
-                  <td><a href="/secrets">Link</a></td>
-                  <td>/secrets</td>
-                  <td>0</td>
-                  <td>False</td>
-                </tr>
-                <tr>
-                  <th>2</th>
-                  <td>asDsadsd@email.com</td>
-                  <td><a href="/secrets">Link</a></td>
-                  <td>/passwords</td>
-                  <td>0</td>
-                  <td>False</td>
-                </tr>
-                <tr>
-                  <th>3</th>
-                  <td>asda323@email.com</td>
-                  <td><a href="/secrets">Link</a></td>
-                  <td>/logins</td>
-                  <td>3</td>
-                  <td>False</td>
-                </tr>
-              </tbody>
-            </table>
+            {% if records %}
+              <br>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>E-mail</th>
+                    <th>Magic link</th>
+                    <th>Route</th>
+                    <th>Counter</th>
+                    <th>Revoked</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for record in records %}
+                  <tr>
+                    <th>{{ record['id'] }}</th>
+                    <td>{{ record['email'] }}</td>
+                    <td><a style="color: BlueViolet" href="{{ record['link'] }}">Link</a></td>
+                    <td>{{ record['route'] }}</td>
+                    <td>{{ record['counter'] }}</td>
+                    <td>{{ record['revoked'] }}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            {% endif %}
 
           </div>
         </div>
