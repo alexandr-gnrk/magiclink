@@ -15,6 +15,7 @@ class Magiclink(Base):
     create_time = Column(DateTime)
     email = Column(String)
     token = Column(String)
+    route = Column(String)
     counter = Column(Integer)
     revoked = Column(Boolean)
 
@@ -36,11 +37,12 @@ class MagiclinkDB():
     def __init__(self):
         self.session = sessionmaker(bind=ENGINE)()
 
-    def add_magiclink(self, email, token):
+    def add_magiclink(self, email, token, route):
         record = Magiclink(
             create_time=datetime.now(),
             email=email,
             token=token,
+            route=route,
             counter=0,
             revoked=False)
         self.session.add(record)
@@ -56,6 +58,13 @@ class MagiclinkDB():
         record = self.find_by_token(token)
 
         if (record is not None) and (not record.revoked):
+            return True
+        return False
+
+    def verify_token_and_route(self, token, route):
+        record = self.find_by_token(token)
+
+        if (record is not None) and (not record.revoked) and token.route == route:
             return True
         return False
 
