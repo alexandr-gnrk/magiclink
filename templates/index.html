@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin panel</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+
+<body>
+  <section class="hero is-info is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <form method="POST">
+
+              <label class="label">E-mail</label>
+              <div class="control has-icons-left">
+                  <input class="input" type="text" name="email" placeholder="example@email.com">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-envelope"></i>
+                  </span>
+              </div>
+
+              <label class="label">Full link / Route</label>
+              <div class="control has-icons-left">
+                  <input class="input" type="text" name="route" placeholder="/secrets">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-link"></i>
+                  </span>
+              </div>
+
+              <br>
+              <div class="columns is-centered">
+                <p class="control">
+                  <button type="submit" class="button is-success">
+                    Create magic link!
+                  </button>
+                </p>
+              </div>
+
+            </form>
+
+            <br>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>E-mail</th>
+                  <th>Magic link</th>
+                  <th>Route</th>
+                  <th>Counter</th>
+                  <th>Revoked</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>1</th>
+                  <td>example@email.com</td>
+                  <td><a href="/secrets">Link</a></td>
+                  <td>/secrets</td>
+                  <td>0</td>
+                  <td>False</td>
+                </tr>
+                <tr>
+                  <th>2</th>
+                  <td>asDsadsd@email.com</td>
+                  <td><a href="/secrets">Link</a></td>
+                  <td>/passwords</td>
+                  <td>0</td>
+                  <td>False</td>
+                </tr>
+                <tr>
+                  <th>3</th>
+                  <td>asda323@email.com</td>
+                  <td><a href="/secrets">Link</a></td>
+                  <td>/logins</td>
+                  <td>3</td>
+                  <td>False</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>
