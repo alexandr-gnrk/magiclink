@@ -49,6 +49,9 @@ class MagiclinkDB():
         self.session.commit()
         return record
 
+    def get_all(self):
+        return self.session.query(Magiclink).all()
+
     def find_by_token(self, token):
         return self.session.query(Magiclink).\
             filter(Magiclink.token == token).\
