@@ -47,15 +47,23 @@ def magiclink(token):
     return redirect(utils.token_to_reallink(token))
 
 
+@app.route('/revoke/<token>')
+def revoke(token):
+    utils.revoke(token)
+    return redirect(url_for('root'))
+
+
 @app.route('/treasure')
 @utils.verify_access
 def treasure():
     return render_template('treasure.html')
 
+
 @app.route('/password')
 @utils.verify_access
 def password():
     return render_template('password.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -64,6 +64,7 @@
                     <th>Route</th>
                     <th>Counter</th>
                     <th>Revoked</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -75,6 +76,19 @@
                     <td>{{ record['route'] }}</td>
                     <td>{{ record['counter'] }}</td>
                     <td>{{ record['revoked'] }}</td>
+<!--                     <td><input type="submit" name="submit_button" value="Revoke"></td>
+ -->                  
+                    <td>
+                      {% if record['revoked'] %}
+                        <button class="button" disabled>
+                          <a href="#">Revoke</a>
+                        </button>
+                      {% else %}
+                        <button class="button">                        
+                          <a href="{{ record['revoke_link'] }}">Revoke</a>
+                        </button>
+                      {% endif %}
+                    </td>
                   </tr>
                   {% endfor %}
                 </tbody>

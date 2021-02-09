@@ -78,4 +78,4 @@ class MagiclinkDB():
     def revoke(self, token):
         record = self.find_by_token(token)
         record.revoked = True
-        session.commit()
+        self.session.commit()

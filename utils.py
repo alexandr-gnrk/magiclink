@@ -12,7 +12,7 @@ DB = orm.MagiclinkDB()
 
 
 def verify_access(func):
-    
+
     @functools.wraps(func)
     def wrapper_decorator(*args, **kwargs):
         token = flask.session.pop('token', None)
@@ -31,6 +31,10 @@ def generate_token():
     return secrets.token_urlsafe(NBYTES)
 
 
+def revoke(token):
+    DB.revoke(token)
+
+
 def save_record(email, token, route):
     DB.add_magiclink(email, token, route)
 
@@ -44,7 +48,7 @@ def verify_connection(token, route):
 
 
 def token_to_magiclink(token):
-    return flask.url_for(f'magiclink', token=token, _external=True)
+    return flask.url_for('magiclink', token=token, _external=True)
 
 
 def token_to_reallink(token):
@@ -53,6 +57,9 @@ def token_to_reallink(token):
     url = urllib.parse.urljoin(host_url, route)
     return url
 
+def token_to_revokelink(token):
+    return flask.url_for('revoke', token=token, _external=True)
+
 
 def adapt_records_for_templates():
     records = list()
@@ -60,6 +67,7 @@ def adapt_records_for_templates():
         records.append({
             'id': row.id,
             'email': row.email,
+            'revoke_link': token_to_revokelink(row.token),
             'link': token_to_magiclink(row.token),
             'route': row.route,
             'counter': row.counter,
