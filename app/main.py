@@ -15,7 +15,6 @@ from . import utils
 
 
 app = Flask(__name__)
-app.secret_key = secrets.token_hex(16)
 
 
 @app.route('/', methods=['GET', 'POST'])
