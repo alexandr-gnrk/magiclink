@@ -1,3 +1,4 @@
+import os
 import secrets
 import urllib
 
@@ -15,6 +16,7 @@ from . import utils
 
 
 app = Flask(__name__)
+app.secret_key = os.getenv('MAGICLINK_KEY')
 
 
 @app.route('/', methods=['GET', 'POST'])

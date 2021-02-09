@@ -1,2 +1,1 @@
-web: gunicorn wsgi:app
-
+web: gunicorn --env MAGICLINK_KEY=$MAGICLINK_KEY wsgi:app 
