@@ -4,7 +4,7 @@ import urllib
 
 import flask
 
-import orm
+from . import orm
 
 
 NBYTES = 32

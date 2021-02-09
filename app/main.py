@@ -10,8 +10,8 @@ from flask import (
     url_for
 )
 
-import orm
-import utils
+from . import orm
+from . import utils
 
 
 app = Flask(__name__)
