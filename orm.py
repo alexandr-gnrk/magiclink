@@ -66,8 +66,7 @@ class MagiclinkDB():
 
     def verify_token_and_route(self, token, route):
         record = self.find_by_token(token)
-
-        if (record is not None) and (not record.revoked) and token.route == route:
+        if (record is not None) and (not record.revoked) and str(record.route) == route:
             return True
         return False
 
